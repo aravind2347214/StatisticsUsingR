@@ -4,7 +4,7 @@ v2=seq(1:10)
 typeof(v1)
 typeof(v2)
 typeof(v3)
-x<-c("Jan","Feb","March","Apr","May","June","July","Aug")
+x<-c("Jan","Feb","March","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec")
 y=x[c(3,2,7)]
 z=x[c(TRUE,FALSE,FALSE,TRUE,TRUE,FALSE,FALSE,TRUE)]
 q=x[c(-2,-4)]
@@ -195,24 +195,3 @@ if(c==0){
 }else{
   print("It is not orthogonal")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
