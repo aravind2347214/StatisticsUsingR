@@ -17,10 +17,10 @@ print("Matrix Diffrence")
 print(matrix_diff)
 
 #Multiply matrix_A by a scalar value of 2 and store the result in a new matrix named matrix_mult
-matrix_mult<-matrix_A*matrix_B
-rownames(matrix_mult)=c("m(A.B)R1","m(A.B)R2","m(A.B)R3")
-colnames(matrix_mult)=c("m(A.B)C1","m(A.B)C2","m(A.B)C3")
-print("Matrix Multiplication")
+matrix_mult<-matrix_A *2
+rownames(matrix_mult)=c("m(A.2)R1","m(A.2)R2","m(A.2)R3")
+colnames(matrix_mult)=c("m(A.2)C1","m(A.2)C2","m(A.2)C3")
+print("Matrix Multiplication By 2")
 print(matrix_mult)
 
 #Calculate the product of matrix_A and matrix_B and store the result in a new matrix named matrix_product

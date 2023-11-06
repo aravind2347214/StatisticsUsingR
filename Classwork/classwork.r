@@ -204,13 +204,20 @@ month_levels<-c("Jan","Feb","March","Apr","May","June","July","Aug","Sep","Oct",
 
 y1<-factor(x1,levels=month_levels)
 print(y1)
+a<-c(1,2,3,4,5)
+b<-as.ordered(a)
 
 is.factor(y1)
 as.ordered(y1)
 sort(y1)
+is.ordered(y1)
+is.ordered(b)
  
 #list
-list_info<-list("Blue","YEllow",c(12,3,24),TRUE,13.5,103.5)
+list_info<-list("Blue","YEllow",c(12,3,24),TRUE,13.5,103.5);
+length(list_info)
+list_info[2]= NULL
+length(list_info)
 print(list_info)
 
 
