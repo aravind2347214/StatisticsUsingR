@@ -221,20 +221,93 @@ length(list_info)
 print(list_info)
 
 
+#releveling a factor
+
+sizes <- factor(c("Samll","Medium","Large"))
+sizes
+
+sizes<-relevel(sizes,"Medium")
+sizes
+
+sizes<-factor(sizes,levels = rev(levels(sizes)))
+sizes
+
+#Dataframe 
+df<- data.frame(
+                NumberCol = 1:3,
+                TextcCol = c("FirstText", "SecondText","ThirdText"),
+                BoolCol = c(TRUE,TRUE,FALSE),
+                DoubleCol = c(1.2,4.4,7.4),
+                #stringsAsFactors = FALSE
+                stringsAsFactors = TRUE
+                
+                
+                )
+df
+#structure of dataframe
+str(df)
+df<-rbind(df,c(4,"FourthText",FALSE,5.5))
+
+
+v1<-1:3
+v2<-c("FirstText", "SecondText","ThirdText")
+v3<-c(1.2,4.4,7.4)
+
+#vector into a dataframe
+df2<-data.frame(col1=v1,col2=v2,col3=v3)
+df2
 
 
 
-  
+#list to dataframe
+listdf<-list(item1=1:2,item2=c("SecondText","ThirdText"),item3=c(4.4,7.4))
+newldf<-as.data.frame(listdf)
+newldf
+
+#is.data.frame(newldf)
+
+#matrix to dataframe
+matA<-matrix(c(10,5,3,6),nrow = 2,ncol=2,byrow = TRUE,dimnames = list(c("m1R1","m1R2"),c("m1C1","m1C2")))
+matdf<-as.data.frame(matA)
+matA
+
+attributes(df)
+
+df[2:3,]
+
+df[c(2,3)]
 
 
+df[c("NumberCol","TextcCol")]
+df[1:2,c(1,3)]
+v<-c(1,2,4)
+df[,v]
+df[,2]
+df[,2]
+df[,2,drop =FALSE]
 
+mtcars
+mtcars[3]
 
+mtcars[10,]
+max(mtcars[1])
 
+a<-mtcars[mtcars$am==0,]
+nrow(a)
+b<-mtcars[mtcars$vs==0,]
+row.names(b)
 
+sixCyllinder<-mtcars[mtcars$cyl==6,]
+sixCyllinder
 
+foutcylinder<-mtcars[mtcars$cyl==4,]
+maxfcylmpg<-max(foutcylinder$mpg)
+maxfcylmpg
 
+nrow(foutcylinder[foutcylinder$am==0])
+foutcylinder[foutcylinder$am==0,]
 
-
+mean(mtcars[(mtcars$cyl==8&mtcars$am==0),]$wt)
 
 
 
