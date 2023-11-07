@@ -75,7 +75,7 @@ print(matrix_A_sqrt)
 
 #Calculate the mean of all the elements in matrix_B
 mean_matrix_B<-mean(matrix_B)
-print("Mean of Matrix A ")
+print("Mean of Matrix B")
 print(mean_matrix_B)
 
 
@@ -85,7 +85,7 @@ print("Matrix A Colomn Sum")
 print(sum_matrix_A)
 
 #Calculate the row means of matrix_B.
-row_means_matrix_B<-c(mean(matrix_B[1,]),mean(matrix_B[2,]))
+row_means_matrix_B<-c(mean(matrix_B[1,]),mean(matrix_B[2,]),mean(matrix_B[3,]))
 print("Matrix B Row Mean")
 print(row_means_matrix_B)
 
