@@ -2,15 +2,20 @@ print(getwd())
 setwd("C:\\Users\\aravi\\Desktop\\StatisticsUsingR\\Labworks\\Task4")
 print(getwd())
 
-student_scores<-data.frame(
-  StudentID= sample(1:100),
-  Department=sample(c("Sales","Finance","Marketing","Design","Engineering"),100,replace = TRUE),
-  Salary= sample(18:25,100,replace = TRUE),
-  Marks=round(runif(100,min=40,max=99))
-)
+employee_data
 
 # Read the CSV file into a data frame
 employee_data <- read.csv("employee_data.csv")
+
+# Print out the first few rows of employee_data
+head(employee_data)
+
+
+# print tail of employee data
+tail(employee_data)
+
+# View summary statistics for all variables in employee_data
+summary(employee_data)
 
 # Display the structure of the data frame
 print(employee_data)
@@ -31,7 +36,7 @@ cat("Highest Salary:\n")
 print(employee_data[employee_data$Salary == max(employee_data$Salary), c("Employee_ID", "Name", "Salary")])
 
 
-print()
+
 cat("\nLowest Salary:\n")
 print(employee_data[employee_data$Salary == min(employee_data$Salary), c("Employee_ID", "Name", "Salary")])
 
