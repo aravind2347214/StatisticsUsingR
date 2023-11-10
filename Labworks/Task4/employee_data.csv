@@ -1,0 +1,30 @@
+Employee_ID,Name,Department,Salary,Joining_Date
+123abc,John Doe,Information Technology,5000,2020-01-15
+456def,Jane Smith,Marketing,4000,2015-07-20
+789ghi,David Johnson,Finance,6000,2020-03-10
+012jkl,Sarah Williams,Human Resources,4500,2018-11-05
+345mno,Michael Brown,Sales,5500,2017-09-12
+678pqr,Emily Davis,Finance,5200,2020-02-01
+901stu,Jessica Wilson,Customer Service,3800,2016-04-18
+234vwx,Christopher Martinez,Operations,4800,2014-12-30
+567yz,Amanda Anderson,Information Technology,6500,2020-05-25
+890ab,Daniel Thomas,Quality Assurance,4200,2019-09-08
+123cd,Laura Garcia,Finance,5800,2017-03-21
+456efg,Robert Lee,Business Development,5100,2017-04-07
+789hij,Jennifer Hernandez,Business Development,4700,2019-08-14
+012klm,Matthew Clark,Logistics,4300,2018-02-27
+345nop,Lauren Lewis,Logistics,5400,2020-06-10
+678qrs,Anthony Walker,Marketing,3900,2019-10-23
+901tuv,Rebecca Hall,Administration,4700,2017-05-06
+234wxy,Kevin Young,Information Technology,4400,2020-03-19
+567z,Stephanie Turner,Research and Development,6200,2019-11-01
+890a,Thomas Allen,Customer Service,4100,2018-06-14
+123bc,Michelle White,Operations,4900,2017-01-27
+456de,Ryan Hall,Information Technology,6800,2015-08-09
+789fg,Rachel Scott,Quality Assurance,4500,2019-12-22
+012hi,Andrew Green,Finance,5300,2018-07-05
+345jk,Samantha Adams,Business Development,5000,2020-03-21
+678lm,Jason Baker,Business Development,4600,2019-09-03
+901no,Melissa Turner,Logistics,4200,2018-01-16
+234pq,Erica Hill,Logistics,5600,2017-07-29
+567rs,Patrick Cook,Marketing,4000,2020-05-12

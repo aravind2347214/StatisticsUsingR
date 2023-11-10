@@ -310,6 +310,44 @@ foutcylinder[foutcylinder$am==0,]
 mean(mtcars[(mtcars$cyl==8&mtcars$am==0),]$wt)
 
 
+#=========================================================
+student_scores<-data.frame(
+  StudentID= sample(1:100),
+  Gender=sample(c("Male","Female"),100,replace = TRUE),
+  Age= sample(18:25,100,replace = TRUE),
+  Marks=round(runif(100,min=40,max=99))
+)
+
+print(student_scores)
+print(getwd())
+setwd("C:\\Users\\aravi\\Desktop\\StatisticsUsingR\\Classwork")
+print(getwd())
+write.csv(student_scores,"student_scores.csv",row.names = FALSE)
+data<-read.csv("student_scores.csv")
+print(data)
+max_marks<-max(data$Marks)
+max_marks
+
+min_age<-min(data$Age)
+min_age
+
+print(is.data.frame(data))
+
+age_greater_than_20<-data[data$Age>20,]
+age_greater_than_20
+
+female_with_mark_greater_than_50<-data[data$Gender=="Female"&data$Marks>50,]
+female_with_mark_greater_than_50
+
+write.csv(female_with_mark_greater_than_50,"female>50Marks.csv",row.names = FALSE)
+head(data)
+tail(data,10)
+
+#read a text file in R
+textfile <- readLines("sample.txt", encoding = "UTF-8") 
+textfile
+write.table(data,"sample.txt",sep="\t",quote=F,row.names = F)
+x
 
 
-
+  
