@@ -349,5 +349,40 @@ textfile
 write.table(data,"sample.txt",sep="\t",quote=F,row.names = F)
 x
 
+precip
+rivers
+discoveries
 
+
+#use stripchart for qualitative data
+stripchart(precip,xlab = "rainfall")
+stripchart(rivers,method = "jitter")
+stripchart(discoveries,method = "stack")
+
+#histogram
+hist(precip,main="")
+hist(precip,freq = TRUE,main = "Precip")
+hist(precip,freq = FALSE,breaks = 200)
+
+
+carsdata<-as.data.frame(mtcars)
+carsdata
+
+barplot()
+str(carsdata)
+carsdata$gear<-as.ordered(carsdata$gear)
+carsdata$am<-as.factor(carsdata$am)
+carsdata$vs<-as.factor(carsdata$vs)
+carsdata$cyl<-as.ordered(carsdata$cyl)
+carsdata$carb<-as.ordered(carsdata$carb)
+
+hist(carsdata$wt,xlab = "Car Weight",ylab = "Number of Cars",main = "Weight/Count Graph of Cars")
+barplot(height = table(carsdata$cyl))
+stripchart(carsdata$wt,xlab = "Car Weight")
+
+
+
+
+
+  
   
