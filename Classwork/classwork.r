@@ -1,4 +1,5 @@
 v1<-c(1,2,TRUE,3,"hjknasfk",5);
+
 v3<-c(1,2,3,4)
 v2=seq(1:10)
 typeof(v1)
@@ -379,6 +380,10 @@ carsdata$carb<-as.ordered(carsdata$carb)
 hist(carsdata$wt,xlab = "Car Weight",ylab = "Number of Cars",main = "Weight/Count Graph of Cars")
 barplot(height = table(carsdata$cyl))
 stripchart(carsdata$wt,xlab = "Car Weight")
+
+#-------------------------------------------------------
+
+
 
 
 
