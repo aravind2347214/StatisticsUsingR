@@ -382,12 +382,87 @@ barplot(height = table(carsdata$cyl))
 stripchart(carsdata$wt,xlab = "Car Weight")
 
 #-------------------------------------------------------
+#skewness 
+library(moments)
+x<-c(40,41,42,43,50)
+skewness(x)
+hist(x)
+density(x)
+table(x)
+sd(x)
+y<-c(10,11,21,22,23,25)
+skewness(y)
+hist(y)
+rn<-rnorm(20)
+rn
+density(rn)
+set.seed(3548145)
+x_norm<-rnorm(5000)
+hist(x_norm,prob=TRUE,ylim = c(0,0.5))
+lines(density(x_norm),col=2,lwd=3)
+
+
+#kurtosis
+#if gamma <3 it is platykurtic
+#if gamma = 3 it is mesokurtic
+#if gamma >3 it is leptokurtic
+
+kurtosis(x_norm)
+x<-c(rep(61,each=10),rep(64,each=18),
+     rep(65,each=23),rep(67,each=32),
+     rep(70,each=27),rep(73,each=17))
+kurtosis(x)
+hist(x)
+lines(density(x),col=2,lwd=3)
+
+
+rnorm_x<-rnorm(100)
+kurtosis(meso_x)
+hist()
+
+
+mt_data<-mtcars
+avg_mpg<-mean(mt_data$mpg)
+avg_mpg
+median_mpg<-median(mt_data$mpg)
+median_mpg
+mode_mpg <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+mode_mpg(mt_data$mpg)
+
+range(mt_data$wt)
+IQR(mt_data$qsec)
+hist(mt_data$qsec)
+library(ggplot2)
+den_qsec <- density(mt_data$qsec)
+plot(den_qsec, frame = FALSE, col = "blue",main = "Density plot")
+
+var(mt_data$hp)
+sd(mt_data$hp)
+skewness(mt_data$disp)
+den_disp <- density(mt_data$disp)
+plot(den_disp, frame = FALSE, col = "blue",main = "Density plot")
+
+kurtosis(mt_data$drat)
+#it is platykurtic
+den_drat <- density(mt_data$drat)
+plot(den_drat, frame = FALSE, col = "blue",main = "Density plot")
 
 
 
+freq_table_cyl<-table(mt_data$cyl)
+freq_table_cyl<-data.frame(freq_table_cyl)
+colnames(freq_table_cyl) <- c("Number of Cylinders","Number of Cars")
+freq_table_cyl[2]/length(mt_data$cyl)
+length(mt_data)
 
 
+boxplot(mt_data$mpg)
+density(mt_data$mpg)
+summary(mt_data$mpg)
+median(mt_data$mpg)
 
 
-  
-  
+scatter.smooth(x=mt_data$hp,y=mt_data$qsec)
