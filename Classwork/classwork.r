@@ -139,7 +139,7 @@ print(mat1[,])
 print(changeDmat[c(TRUE,FALSE,TRUE),c(TRUE,TRUE,FALSE)])
 print(changeDmat[c(1,2),c(TRUE,TRUE,FALSE)])
 print(changeDmat[changeDmat>2])
-print(changeDmat[changeDmat%%2 =  = 0])
+# print(changeDmat[changeDmat%%2 = 0])
 print(mat1[,"m1C1"])
 print(mat1["m1R1",])
 print(mat1["m1R2","m1C1"])
@@ -183,14 +183,14 @@ identityMat = matrix(c(1,0,0,1),nrow  =  2,ncol  =  2)
 print(identityMat)
 
 #checking orthogonality
-mulmattran<-tranMat1 =  = invMat1
+# mulmattran<-tranMat1 =  = invMat1
 c = 0
 for (x in mulmattran) {
-  if(x =  = FALSE){
+  # if(x =  = FALSE){
     c = 1
     break
   }
-}
+# }
 if(c =  = 0){
   print("It is orthogonal")
 }else{
@@ -500,5 +500,114 @@ y_bar<-mean(y)
 x_sd<-sd(x)
 y_sd<-sd(y)
 
+# Paired T Test
+# we have to put var.equal 
+x1<-c(22,20,19,24,25,25,28,22,30,27,24,18,16,19,19,28,24,25,25,23)
+x2<-c(24,22,19,22,28,26,28,24,30,29,25,20,17,18,18,28,26,27,27,24)
+Xdiff<-x1-x2
+XbarDiff<-mean(Xdiff)
+SDiff<-sd(Xdiff)
+n<-length(x1)
+tCalculated<-(XbarDiff-0)/(SDiff/sqrt(n))
+tCalculated
+?qt
+tFuction<-t.test(x1,x2,alternative = "two.sided",
+       mu = 0, paired = TRUE, var.equal = TRUE,
+       conf.level = 0.95)
+
+names(tFuction)
+tFuction$p.value
+typeof(tFuction)
+summary(tFuction)
+
+# builtin function which returns the ttable value
+print(ttable(tFuction))
+
+?t.table
+?ts
+
+# ANOVA 
+# One way ANOVA
+metA=c(10,9,8,7.5,8.5,9,10,8,8,9)
+metB=c(8,9,10,8,8.5,7,9.5,9,7,10)
+metC=c(9,8,7,10,9,8,7,10,9,8)
+
+mA=mean(metA)
+mB=mean(metB)
+mC=mean(metC)
+
+x_x_A=sum((metA-mA)^2)
+x_x_B=sum((metB-mB)^2)
+x_x_C=sum((metC-mC)^2)
+
+x_x_A
+x_x_B
+x_x_C
+
+tot_x_x <- x_x_A + x_x_B  +x_x_C
+tot_x_x
+
+varA<- x_x_A/(length(metA)-1)
+varB<- x_x_B/(length(metB)-1)
+varC<- x_x_C/(length(metC)-1)
+
+totVar<-varA+varB+varC
+totVar
+
+totVar/tot_x_x
 
 
+# --------------------------
+
+fr1<-c(6,8,4,5,3,4)
+fr2<-c(8,12,9,11,6,8)
+fr3<-c(13,9,11,8,7,12)
+
+fertilizerData<-data.frame(fr1,fr2,fr3)
+
+# calc mean of each group
+meanFr1<-mean(fr1)
+meanFr2<-mean(fr2)
+meanFr3<-mean(fr3)
+
+# h0 : mu1 = mu2 = mu3 (means are equal)
+# h1 : mu != mu2 != mu3 (means are not equal)
+
+#calc total mean
+totMean<-(meanFr1+meanFr2+meanFr3)/3
+
+# calculate SSB
+SSB=((meanFr1-totMean)^2)*6+((meanFr2-totMean)^2*6)+((meanFr3-totMean)^2)*6
+SSB
+N = length(fr1)+length(fr2)+length(fr3)
+k=3
+
+# calculate between group df
+df1<-k-1
+df1
+
+
+# calc SSE
+SSE= sum((fr1-meanFr1)^2)+sum((fr2-meanFr2)^2)+sum((fr3-meanFr3)^2)
+SSE
+
+# calc degree of freedom for errors
+df2= N-k
+df2
+
+# Determine MSB and MSE
+MSB=SSB/df1
+MSE=SSE/df2
+
+MSB
+MSE
+
+# find F statistic
+Fstat=MSB/MSE
+Fstat
+
+# calc Fcritical value
+Fcrit<-3.68
+Fcrit
+
+Fcrit>Fstat
