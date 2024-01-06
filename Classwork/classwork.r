@@ -124,19 +124,19 @@ print(cmat)
 changeDmat<-c(1,2,4,2,2,5,7,4,3)
 class(changeDmat)
 dim(changeDmat)<-c(3,3)
-class(changeDmat)
-print(changeDmat)
+class(changeDmat) # nolint
+print(changeDmat) # nolint: object_name_linter.
 
 #Accessing matrix elements matname[row,col]
-print(mat1[1,2])
-print(mat1[1,])
-print(mat1[,1])
-print(mat1[c(1,2),])
+print(mat1[1,2]) # nolint
+print(mat1[1,]) # nolint
+print(mat1[,1]) # nolint
+print(mat1[c(1,2),]) # nolint
 print(mat1[,c(2,1)])
 print(mat1[c(1,2),c(2,1)])
 print(mat1[])
 print(mat1[,])
-print(changeDmat[c(TRUE,FALSE,TRUE),c(TRUE,TRUE,FALSE)])
+print(changeDmat[c(TRUE,FALSE,TRUE),c(TRUE,TRUE,FALSE)]) # nolint
 print(changeDmat[c(1,2),c(TRUE,TRUE,FALSE)])
 print(changeDmat[changeDmat>2])
 # print(changeDmat[changeDmat%%2 = 0])
@@ -179,8 +179,8 @@ invMat1<-solve(mat1)
 print(invMat1)
 
 #creating identity matrix
-identityMat = matrix(c(1,0,0,1),nrow  =  2,ncol  =  2)
-print(identityMat)
+identityMat = matrix(c(1,0,0,1),nrow  =  2,ncol  =  2) # nolint
+print(identityMat) # nolint
 
 #checking orthogonality
 # mulmattran<-tranMat1 =  = invMat1
@@ -191,17 +191,17 @@ for (x in mulmattran) {
     break
   }
 # }
-if(c =  = 0){
-  print("It is orthogonal")
-}else{
-  print("It is not orthogonal")
-}
+# if (c = = 0) {
+#   print("It is orthogonal")
+# }else{
+#   print("It is not orthogonal")
+# }
 
 
 #------------------------------------------------------------------
 #factor
 x1<-c("Dec","Jan","May","Nov")
-month_levels<-c("Jan","Feb","March","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec")
+month_levels<-c("Jan","Feb","March","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec") # nolint
 
 y1<-factor(x1,levels = month_levels)
 print(y1)
@@ -213,7 +213,6 @@ as.ordered(y1)
 sort(y1)
 is.ordered(y1)
 is.ordered(b)
- 
 #list
 list_info<-list("Blue","YEllow",c(12,3,24),TRUE,13.5,103.5);
 length(list_info)
@@ -233,17 +232,14 @@ sizes
 sizes<-factor(sizes,levels  =  rev(levels(sizes)))
 sizes
 
-#Dataframe 
+#Dataframe
 df<- data.frame(
-                NumberCol  =  1:3,
+                NumberCol  =  1:3, # nolint
                 TextcCol  =  c("FirstText", "SecondText","ThirdText"),
                 BoolCol  =  c(TRUE,TRUE,FALSE),
                 DoubleCol  =  c(1.2,4.4,7.4),
                 #stringsAsFactors  =  FALSE
-                stringsAsFactors  =  TRUE
-                
-                
-                )
+                stringsAsFactors  =  TRUE)
 df
 #structure of dataframe
 str(df)
@@ -268,7 +264,7 @@ newldf
 #is.data.frame(newldf)
 
 #matrix to dataframe
-matA<-matrix(c(10,5,3,6),nrow  =  2,ncol = 2,byrow  =  TRUE,dimnames  =  list(c("m1R1","m1R2"),c("m1C1","m1C2")))
+matA<-matrix(c(10,5,3,6),nrow  =  2,ncol = 2,byrow  =  TRUE,dimnames  =  list(c("m1R1","m1R2"),c("m1C1","m1C2"))) # nolint
 matdf<-as.data.frame(matA)
 matA
 
@@ -293,7 +289,7 @@ mtcars[3]
 mtcars[10,]
 max(mtcars[1])
 
-a<-mtcars[mtcars$am =  = 0,]
+a<-mtcars[mtcars$am = = 0,]
 nrow(a)
 b<-mtcars[mtcars$vs =  = 0,]
 row.names(b)
