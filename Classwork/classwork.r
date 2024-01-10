@@ -607,3 +607,29 @@ Fcrit<-3.68
 Fcrit
 
 Fcrit>Fstat
+
+
+# To perform  linear regression
+# Medthod 1
+set.seed(1066)
+x = rlnorm(1000,5,2)
+x
+lnl = function(params){
+  negL = -sum(dlnorm(x,params[1],params[2],log = TRUE))
+  negL
+}
+
+p=c(100,100)
+MLE=nln(lnl,p)
+mu = MLE$estimate[1]
+mu
+sigma = MLE$estimate[2]
+sigma
+
+
+
+# Method 2
+
+
+library(MASS)
+fitdistr(x,"log-normal")
