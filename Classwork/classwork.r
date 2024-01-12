@@ -610,26 +610,81 @@ Fcrit>Fstat
 
 
 # To perform  linear regression
-# Medthod 1
-set.seed(1066)
-x = rlnorm(1000,5,2)
-x
-lnl = function(params){
-  negL = -sum(dlnorm(x,params[1],params[2],log = TRUE))
-  negL
-}
+?cars
+View(cars)
+str(cars)
+dim(cars)
+plot(dist~speed,data=cars,xlab="Speed",ylab="Stopping Distance",main="Stopping Distance Vs Speed",pch=20,cex=2,col="red")
+x=cars$speed
+y=cars$dist
+#least square method
+Sxy=sum((x-mean(x))*(y-mean(y)))
+Sxx=sum((x-mean(x))^2)
+Syy=sum((y-mean(y))^2)
+c(Sxy,Sxx,Syy)
+beta_1_hat = Sxy/Sxx
+beta_0_hat = mean(y)-beta_1_hat*mean(x)
+c(beta_0_hat,beta_1_hat)
+# y = b0+ b1x
+# y = mx + c 
+# possible values for x in cars
+unique(cars$speed)
+# y = b0 + b1 * 8
 
-p=c(100,100)
-MLE=nln(lnl,p)
-mu = MLE$estimate[1]
-mu
-sigma = MLE$estimate[2]
-sigma
+# we want to predict the value at 8
+8 %in% unique(cars$speed)
+min(cars$speed)<8& 8<max(cars$speed) 
+beta_0_hat + beta_1_hat * 8
+# finding the residueal error from calculated and existed value
+epsilon=(16- (beta_0_hat + beta_1_hat * 8))
+epsilon
 
 
+# we want to predict the value at 21
+21 %in% unique(cars$speed)
+min(cars$speed)<21& 21<max(cars$speed) 
+beta_0_hat + beta_1_hat *21
 
-# Method 2
+
+# we want to predict the value at 50
+50 %in% unique(cars$speed)
+min(cars$speed)<50 & 50<max(cars$speed) 
+beta_0_hat + beta_1_hat *50
 
 
-library(MASS)
-fitdistr(x,"log-normal")
+# predict for all x where x = cars$speed
+y_predict<-beta_0_hat + beta_1_hat *cars$speed
+y_predict
+
+all_error_epsilon<-cars$dist-y_predict
+all_error_epsilon
+
+# rsquare value to find the error rate
+n= length(all_error_epsilon)
+manual_sse <- sum(all_error_epsilon^2)/(n-2) # sum of square error
+manual_sse_sqrt<-sqrt(msse)
+manual_sse_sqrt
+
+
+sst<-sum((cars$dist-mean(cars$dist))^2)
+ssreg<-sum((y_predict-mean(cars$dist))^2)
+sse<-sum(( cars$dist-y_predict)^2)
+c(SST=sst,SSReg=ssreg,SSE = sse)
+msse == sse/(n-2)
+
+
+# Calculate the acuuracy of the model
+r_square<-ssreg/sst
+r_square
+
+# use lm function to do this 
+stop_dist_model<-lm(dist~speed,data=cars)
+stop_dist_model
+
+plot(dist~speed,data=cars,xlab="Speed",ylab="Stopping Distance",main="Stopping Distance Vs Speed",pch=20,cex=2,col="red")
+abline(stop_dist_model,lwd=3,col="darkorange")
+
+# find residuals 
+fitted(stop_dist_model)
+summary(stop_dist_model)
+
