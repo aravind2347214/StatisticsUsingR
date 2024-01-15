@@ -181,3 +181,4 @@ pie(res_frequency_table,
 # Add a legend
 legend("topright", legend = names(res_frequency_table), fill = rainbow(length(res_frequency_table)))
 
+
