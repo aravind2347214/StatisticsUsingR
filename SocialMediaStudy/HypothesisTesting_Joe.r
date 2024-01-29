@@ -4,6 +4,7 @@ setwd("C:\\Users\\aravi\\Desktop\\StatisticsUsingR\\SocialMediaStudy")
 getwd()
 
 data <- read.csv("IPSMOI.csv")
+nrow(data)
 
 #HRSPD - Hours Spend per Day
 #SIEFF - Social Interaction Effects Friends and Family

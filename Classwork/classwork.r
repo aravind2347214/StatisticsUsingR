@@ -112,7 +112,7 @@ print(dimnames(mat2))
 cmat<-cbind(c(1,2,3),c(4,5,6))
 
 #creating matrix using row bind
-rmat<-cbind(c(1,2,3),c(4,5,6))
+rmat<-rbind(c(1,2,3),c(4,5,6))
 
 print("Rbinded Matrix")
 print(rmat)
@@ -407,6 +407,7 @@ kurtosis(x_norm)
 x<-c(rep(61,each = 10),rep(64,each = 18),
 rep(65,each = 23),rep(67,each = 32),
 rep(70,each = 27),rep(73,each = 17))
+x
 kurtosis(x)
 hist(x)
 lines(density(x),col = 2,lwd = 3)
@@ -440,6 +441,8 @@ sd(mt_data$hp)
 skewness(mt_data$disp)
 den_disp <- density(mt_data$disp)
 plot(den_disp, frame  =  FALSE, col  =  "blue",main  =  "Density plot")
+
+
 
 kurtosis(mt_data$drat)
 #it is platykurtic
@@ -510,7 +513,7 @@ tCalculated
 tFuction<-t.test(x1,x2,alternative = "two.sided",
        mu = 0, paired = TRUE, var.equal = TRUE,
        conf.level = 0.95)
-
+tFuction
 names(tFuction)
 tFuction$p.value
 typeof(tFuction)
@@ -524,6 +527,23 @@ print(ttable(tFuction))
 
 # ANOVA 
 # One way ANOVA
+group1 <- c(25, 28, 30, 32, 27)
+group2 <- c(29, 31, 30, 26, 28)
+group3 <- c(22, 25, 24, 27, 26)
+
+# Combine data into a data frame
+data <- data.frame(
+  value = c(group1, group2, group3),
+  group = rep(c("Group1", "Group2", "Group3"), each = 5)
+)
+
+data
+# Perform one-way ANOVA
+result <- aov(value ~ group, data = data)
+
+# Print the summary of the ANOVA
+summary(result)
+#---------------------------------
 metA=c(10,9,8,7.5,8.5,9,10,8,8,9)
 metB=c(8,9,10,8,8.5,7,9.5,9,7,10)
 metC=c(9,8,7,10,9,8,7,10,9,8)
@@ -655,6 +675,7 @@ beta_0_hat + beta_1_hat *50
 # predict for all x where x = cars$speed
 y_predict<-beta_0_hat + beta_1_hat *cars$speed
 y_predict
+cars$speed
 
 all_error_epsilon<-cars$dist-y_predict
 all_error_epsilon
@@ -688,3 +709,36 @@ abline(stop_dist_model,lwd=3,col="darkorange")
 fitted(stop_dist_model)
 summary(stop_dist_model)
 
+install.packages("https://cran.r-project.org/src/contrib/Archive/prob/prob_0.9-1.tar.gz")
+library(prob)
+
+rolldie(1)
+rolldie(3,nsides=4)
+head(cards())
+tail(cards())
+tosscoin(2)
+?cards
+?rolldie
+?tosscoin
+?urnsamples
+install.packages("combinat")
+urnsamples(1:3,size=2,replace=TRUE,ordered=TRUE)
+urnsamples(1:3,size=2,replace=FALSE,ordered=TRUE)
+urnsamples(1:3,size=2,replace=TRUE,ordered=FALSE)
+urnsamples(1:3,size=2,replace=FALSE,ordered=FALSE)
+
+
+tosscoin(2,makespace=TRUE)[1:3,]
+subset(rolldie(3),X1+X2+X3>16)
+subset(rolldie(4),isin(rolldie(4),c(2,2,6),ordered=TRUE))
+
+# Union and intersection and diffrence
+library(combinat)
+
+s = cards()
+A = subset(s,suit=="Heart")
+B = subset(s,rank %in% 7:9)
+union(A,B)
+intersect(A,B)
+setdiff(A,B)
+setdiff(B,A)

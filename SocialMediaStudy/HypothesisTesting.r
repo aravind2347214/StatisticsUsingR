@@ -37,6 +37,14 @@ colnames(data) <- c("AgeGroup", "Gender", "CareerStatus", "ResidentialArea",
                     "SOSP", "SMPF", "RPS", "TCEM", "OLF", "APOC", "SMIF",
                     "PFO", "PG")
 
+unique(data$ACPA)
+data$ACPA<-as.numeric(
+factor(data$ACPA,
+    levels = c("Extremely declined",
+                    "Declined",
+                    "Neutral",
+                    "Improved",
+                    "Extremely Positive")))
 
 #data$MHAF
 data$MHAF<-as.numeric(
@@ -50,7 +58,6 @@ factor(data$MHAF,
 threshold_hours = 3  # Adjust the threshold as needed
 # Create a new variable 'UserType' based on the threshold
 data$UserType <- ifelse(data$HRSPD > threshold_hours, 'Heavy User', 'Light User')
-data$UserType
 
 data$SIEFF<-as.numeric(
   factor(data$SIEFF,
@@ -122,7 +129,7 @@ factor(data$SOSP,
                "Once a day",
                "Multiple times a day")))
 result_1way_anova <- aov(MHAF ~ SOSP, data = data) 
-summary(result_anova)
+summary(result_1way_anova)
 # The one-way ANOVA results indicate that there is no significant difference 
 # in mental health scores across different levels of social media usage (SOSP) 
 # based on the provided data. The p-value (Pr(>F)) is 0.933, which is greater 
@@ -240,7 +247,8 @@ summary(result_1way_anova)
 # H02:There is no significant difference in real-life relationship scores between individuals of different age groups.
 # H12:There is a significant difference in real-life relationship scores between individuals of different age groups.
 
-result_2way_anova <- aov(SIEFF ~ AgeGroup * PositivePerception, data = data)
+# result_2way_anova <- aov(SIEFF ~ AgeGroup * positive_data, data = data)
+result_2way_anova <- aov(SIEFF ~ SOSP * AgeGroup, data = data)
 
 # Print the ANOVA table
 summary(result_2way_anova)
@@ -260,30 +268,52 @@ summary(result_2way_anova)
 # This implies that both age group and perception of social media impact significantly contribute to the variations
 #  observed in the "SIEFF" variable, and there is also an interaction effect between age group and perception.
 
+# Linear Regression
+# Problem Statement 1: Analyzing the Impact of Social Media Usage on Real-life Social Relationships
+# Dependent Variable: Social Interaction Effects Friends and Family (SIEFF)
+# Independent Variable: How Often Social Media Use (SOSP)
+# This analysis aims to understand if the frequency of social media use significantly influences real-life social relationships. It addresses the question of whether individuals who spend more time on social media have different real-life social interaction effects compared to those who use it less frequently.
+# Load the necessary libraries
+# Load the necessary libraries
+library(ggplot2)
 
-#--------------Simple Linear Regression Model#--------------
+# Assuming 'data' is your dataset
+# If not, replace 'data' with your actual dataset name
+# Simple Linear Regression
+linear_model <- lm(SIEFF ~ SOSP, data = data)
+
+# Scatter plot to visualize the relationship
+ggplot(data, aes(x = SOSP, y = SIEFF)) +
+  geom_point() +
+  labs(title = "Scatter Plot: Social Media Usage vs. Real-life Social Relationships",
+       x = "How Often Social Media Use (SOSP)",
+       y = "Social Interaction Effects Friends and Family (SIEFF)") +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  geom_abline(intercept = coef(linear_model)[1], slope = coef(linear_model)[2], color = "red")
+# Summary of the regression model
+summary(linear_model)
 
 
 
+# Problem Statement 2: Investigating the Relationship Between Academic Performance and Social Media Engagement
+# Dependent Variable: Academic Performance Affect (ACPA)
+# Independent Variable: Hours Spend per Day on Social Media (HRSPD)
+# This study aims to explore the potential impact of social media usage on academic performance. 
+# It investigates whether the hours spent on social media are related to changes in academic performance, 
+# helping to identify any correlation or causation between the two variables.
 
+linear_model_academic <- lm(ACPA ~ HRSPD, data = data)
 
+# Summary of the regression model
+summary(linear_model_academic)
 
+# Scatter plot to visualize the relationship
+library(ggplot2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ggplot(data, aes(x = HRSPD, y = ACPA)) +
+  geom_point() +
+  labs(title = "Scatter Plot: Hours Spent on Social Media vs. Academic Performance",
+       x = "Hours Spend per Day on Social Media (HRSPD)",
+       y = "Academic Performance Affect (ACPA)") +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  geom_abline(intercept = coef(linear_model_academic)[1], slope = coef(linear_model_academic)[2], color = "red")
